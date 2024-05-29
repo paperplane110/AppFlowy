@@ -12,7 +12,7 @@ async fn restore_document() {
 
   // create a document
   let doc_id: String = gen_document_id();
-  let data = default_document_data();
+  let data = default_document_data(&doc_id);
   let uid = test.user_service.user_id().unwrap();
   test
     .create_document(uid, &doc_id, Some(data.clone()))
@@ -53,7 +53,7 @@ async fn document_apply_insert_action() {
   let test = DocumentTest::new();
   let uid = test.user_service.user_id().unwrap();
   let doc_id: String = gen_document_id();
-  let data = default_document_data();
+  let data = default_document_data(&doc_id);
 
   // create a document
   _ = test.create_document(uid, &doc_id, Some(data.clone())).await;
@@ -106,7 +106,7 @@ async fn document_apply_update_page_action() {
   let test = DocumentTest::new();
   let doc_id: String = gen_document_id();
   let uid = test.user_service.user_id().unwrap();
-  let data = default_document_data();
+  let data = default_document_data(&doc_id);
 
   // create a document
   _ = test.create_document(uid, &doc_id, Some(data.clone())).await;
@@ -149,7 +149,7 @@ async fn document_apply_update_action() {
   let test = DocumentTest::new();
   let uid = test.user_service.user_id().unwrap();
   let doc_id: String = gen_document_id();
-  let data = default_document_data();
+  let data = default_document_data(&doc_id);
 
   // create a document
   _ = test.create_document(uid, &doc_id, Some(data.clone())).await;
